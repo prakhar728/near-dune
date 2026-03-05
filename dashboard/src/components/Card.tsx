@@ -1,20 +1,53 @@
 'use client'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { RefreshCw } from 'lucide-react'
 
 const cardVariants = {
   hidden: { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
+function useRelativeTime(syncedAt: string | null | undefined): string | null {
+  const [label, setLabel] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!syncedAt) { setLabel(null); return }
+
+    function compute() {
+      const diffMs = Date.now() - new Date(syncedAt!).getTime()
+      const diffMin = Math.floor(diffMs / 60000)
+      const diffHr = Math.floor(diffMin / 60)
+      const diffDay = Math.floor(diffHr / 24)
+      if (diffMin < 1) return 'just now'
+      if (diffMin < 60) return `${diffMin}m ago`
+      if (diffHr < 24) return `${diffHr}h ago`
+      return `${diffDay}d ago`
+    }
+
+    setLabel(compute())
+    const id = setInterval(() => setLabel(compute()), 60000)
+    return () => clearInterval(id)
+  }, [syncedAt])
+
+  return label
+}
+
 export function Card({
   title,
   children,
   className = '',
+  syncedAt,
+  onRefresh,
 }: {
   title?: string
   children: React.ReactNode
   className?: string
+  syncedAt?: string | null
+  onRefresh?: () => void
 }) {
+  const timeLabel = useRelativeTime(syncedAt)
+
   return (
     <motion.div
       variants={cardVariants}
@@ -25,6 +58,18 @@ export function Card({
     >
       {title && <h3 className="chart-title">{title}</h3>}
       {children}
+      {timeLabel && onRefresh && (
+        <div className="mt-2 flex items-center gap-1.5 justify-end">
+          <span className="text-[0.625rem] text-[var(--text-muted)]">synced {timeLabel}</span>
+          <button
+            onClick={onRefresh}
+            title="Refresh"
+            className="text-[var(--text-muted)] hover:text-white transition-colors"
+          >
+            <RefreshCw size={10} />
+          </button>
+        </div>
+      )}
     </motion.div>
   )
 }

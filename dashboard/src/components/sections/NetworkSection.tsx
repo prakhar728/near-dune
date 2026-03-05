@@ -63,7 +63,7 @@ export function NetworkSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily Transactions & Active Users">
+        <Card title="Daily Transactions & Active Users" syncedAt={overview.syncedAt} onRefresh={overview.refresh}>
           {overview.state === 'loading' && <ChartSkeleton />}
           {overview.state === 'error' && <ErrorBox message={overview.error!} />}
           {overview.state === 'success' && (
@@ -78,7 +78,7 @@ export function NetworkSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Transaction Success Rate (%)">
+        <Card title="Transaction Success Rate (%)" syncedAt={overview.syncedAt} onRefresh={overview.refresh}>
           {overview.state === 'loading' && <ChartSkeleton />}
           {overview.state === 'error' && <ErrorBox message={overview.error!} />}
           {overview.state === 'success' && (
@@ -91,7 +91,7 @@ export function NetworkSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Action Type Breakdown (Daily)">
+        <Card title="Action Type Breakdown (Daily)" syncedAt={actions.syncedAt} onRefresh={actions.refresh}>
           {actions.state === 'loading' && <ChartSkeleton />}
           {actions.state === 'error' && <ErrorBox message={actions.error!} />}
           {actions.state === 'success' && (
@@ -104,7 +104,7 @@ export function NetworkSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Block Gas Utilization (%)">
+        <Card title="Block Gas Utilization (%)" syncedAt={gas.syncedAt} onRefresh={gas.refresh}>
           {gas.state === 'loading' && <ChartSkeleton />}
           {gas.state === 'error' && <ErrorBox message={gas.error!} />}
           {gas.state === 'success' && (
@@ -117,7 +117,7 @@ export function NetworkSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Delegate (Meta-Transaction) Actions">
+        <Card title="Delegate (Meta-Transaction) Actions" syncedAt={delegates.syncedAt} onRefresh={delegates.refresh}>
           {delegates.state === 'loading' && <ChartSkeleton />}
           {delegates.state === 'error' && <ErrorBox message={delegates.error!} />}
           {delegates.state === 'success' && (

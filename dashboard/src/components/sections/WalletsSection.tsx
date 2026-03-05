@@ -35,7 +35,7 @@ export function WalletsSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily New Account Creations">
+        <Card title="Daily New Account Creations" syncedAt={accounts.syncedAt} onRefresh={accounts.refresh}>
           {accounts.state === 'loading' && <ChartSkeleton />}
           {accounts.state === 'error' && <ErrorBox message={accounts.error!} />}
           {accounts.state === 'success' && (
@@ -50,7 +50,7 @@ export function WalletsSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Account Balance Distribution (Current)">
+        <Card title="Account Balance Distribution (Current)" syncedAt={balDist.syncedAt} onRefresh={balDist.refresh}>
           {balDist.state === 'loading' && <ChartSkeleton />}
           {balDist.state === 'error' && <ErrorBox message={balDist.error!} />}
           {balDist.state === 'success' && (

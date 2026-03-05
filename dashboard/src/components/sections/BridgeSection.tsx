@@ -52,7 +52,7 @@ export function BridgeSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily Bridge Volume (Inbound vs Outbound)">
+        <Card title="Daily Bridge Volume (Inbound vs Outbound)" syncedAt={daily.syncedAt} onRefresh={daily.refresh}>
           {daily.state === 'loading' && <ChartSkeleton />}
           {daily.state === 'error' && <ErrorBox message={daily.error!} />}
           {daily.state === 'success' && (
@@ -68,7 +68,7 @@ export function BridgeSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top Bridged Tokens">
+        <Card title="Top Bridged Tokens" syncedAt={details.syncedAt} onRefresh={details.refresh}>
           {details.state === 'loading' && <ChartSkeleton />}
           {details.state === 'error' && <ErrorBox message={details.error!} />}
           {details.state === 'success' && (
@@ -85,7 +85,7 @@ export function BridgeSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Bridge by Chain">
+        <Card title="Bridge by Chain" syncedAt={details.syncedAt} onRefresh={details.refresh}>
           {details.state === 'loading' && <ChartSkeleton />}
           {details.state === 'error' && <ErrorBox message={details.error!} />}
           {details.state === 'success' && (
