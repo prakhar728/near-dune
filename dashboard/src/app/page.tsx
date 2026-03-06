@@ -49,15 +49,15 @@ export default function Home() {
   const ActiveSection = SECTIONS[activeTab]
 
   return (
-    <div className="min-h-screen bg-[#0a0b0f]">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[var(--border-subtle)] bg-[#0a0b0f]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[#1A1A1A] bg-black/90 backdrop-blur-xl">
         <div className="mx-auto max-w-[1440px] px-6">
           <div className="flex h-16 items-center justify-between gap-6">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                  <rect width="36" height="36" rx="10" fill="#00C1DE" />
+                  <rect width="36" height="36" rx="10" fill="#00EC97" />
                   <path
                     d="M10 25V11l8 14V11M26 11v14"
                     stroke="#000"
@@ -66,13 +66,13 @@ export default function Home() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <div className="absolute -inset-1 -z-10 rounded-xl bg-[var(--near-cyan)] opacity-20 blur-lg" />
+                <div className="absolute -inset-1 -z-10 rounded-xl bg-[#00EC97] opacity-15 blur-lg" />
               </div>
               <div>
                 <p className="text-sm font-bold leading-none tracking-tight text-white">
                   NEAR Analytics
                 </p>
-                <p className="mt-0.5 text-[10px] font-medium text-[var(--text-muted)]">
+                <p className="mt-0.5 text-[10px] font-medium text-[#666]">
                   Powered by Dune
                 </p>
               </div>
@@ -83,7 +83,7 @@ export default function Home() {
       </header>
 
       {/* Tab Nav */}
-      <nav className="sticky top-16 z-40 border-b border-[var(--border-subtle)] bg-[#0a0b0f]/70 backdrop-blur-xl">
+      <nav className="sticky top-16 z-40 border-b border-[#1A1A1A] bg-black/80 backdrop-blur-xl">
         <div className="mx-auto max-w-[1440px] px-6">
           <div className="scroll-nav flex h-11 items-center gap-0.5 overflow-x-auto">
             {NAV.map((item) => (
@@ -95,7 +95,7 @@ export default function Home() {
                 {activeTab === item.id && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute inset-0 rounded-lg bg-[var(--near-cyan-soft)]"
+                    className="absolute inset-0 rounded-lg bg-[var(--near-green-soft)]"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -120,8 +120,8 @@ export default function Home() {
           </motion.div>
         </AnimatePresence>
 
-        <footer className="mt-16 border-t border-[var(--border-subtle)] pt-8 pb-12 text-center">
-          <p className="text-[0.6875rem] text-[var(--text-dimmed)]">
+        <footer className="mt-16 border-t border-[#1A1A1A] pt-8 pb-12 text-center">
+          <p className="text-[0.6875rem] text-[#444]">
             Data sourced from Dune Analytics · NEAR Protocol on-chain data
           </p>
         </footer>

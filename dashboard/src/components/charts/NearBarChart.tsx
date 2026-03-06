@@ -11,14 +11,13 @@ import {
   Cell,
 } from 'recharts'
 
-const COLORS = ['#00C1DE', '#9B5DE5', '#F15BB5', '#FEE440', '#00BBF9', '#00F5D4']
+const COLORS = ['#00EC97', '#6B5CE7', '#F15BB5', '#FEE440', '#00BBF9', '#00F5D4']
 
 const tooltipStyle = {
-  background: 'rgba(15, 17, 23, 0.95)',
-  border: '1px solid rgba(255,255,255,0.08)',
+  background: '#111111',
+  border: '1px solid #222222',
   borderRadius: 12,
-  backdropFilter: 'blur(12px)',
-  boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+  boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
   padding: '10px 14px',
 }
 

@@ -13,7 +13,7 @@ export function TimePeriodSelector({
   onChange: (p: TimePeriod) => void
 }) {
   return (
-    <div className="flex items-center gap-0.5 rounded-xl border border-[var(--border-card)] bg-[var(--bg-card)] p-1">
+    <div className="flex items-center gap-0.5 rounded-xl border border-[#222] bg-[#111] p-1">
       {PERIODS.map((p) => (
         <button
           key={p}
@@ -23,7 +23,7 @@ export function TimePeriodSelector({
           {value === p && (
             <motion.div
               layoutId="period-active"
-              className="absolute inset-0 rounded-[10px] bg-[var(--near-cyan)]"
+              className="absolute inset-0 rounded-[10px] bg-[#00EC97]"
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             />
           )}
