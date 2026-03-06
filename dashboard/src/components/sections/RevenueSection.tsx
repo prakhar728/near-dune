@@ -44,7 +44,7 @@ export function RevenueSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily NEAR Burned (Total Gas Fees)" syncedAt={revenue.syncedAt} onRefresh={revenue.refresh}>
+        <Card title="Daily NEAR Burned (Total Gas Fees)" syncedAt={revenue.syncedAt} onRefresh={revenue.refresh} isRefreshing={revenue.isRefreshing}>
           {revenue.state === 'loading' && <ChartSkeleton />}
           {revenue.state === 'error' && <ErrorBox message={revenue.error!} />}
           {revenue.state === 'success' && (
@@ -57,7 +57,7 @@ export function RevenueSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Protocol vs Validator Revenue Split" syncedAt={revenue.syncedAt} onRefresh={revenue.refresh}>
+        <Card title="Protocol vs Validator Revenue Split" syncedAt={revenue.syncedAt} onRefresh={revenue.refresh} isRefreshing={revenue.isRefreshing}>
           {revenue.state === 'loading' && <ChartSkeleton />}
           {revenue.state === 'error' && <ErrorBox message={revenue.error!} />}
           {revenue.state === 'success' && (

@@ -52,7 +52,7 @@ export function BridgeSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily Bridge Volume (Inbound vs Outbound)" syncedAt={daily.syncedAt} onRefresh={daily.refresh}>
+        <Card title="Daily Bridge Volume (Inbound vs Outbound)" syncedAt={daily.syncedAt} onRefresh={daily.refresh} isRefreshing={daily.isRefreshing}>
           {daily.state === 'loading' && <ChartSkeleton />}
           {daily.state === 'error' && <ErrorBox message={daily.error!} />}
           {daily.state === 'success' && (
@@ -60,15 +60,15 @@ export function BridgeSection({ timePeriod }: { timePeriod: string }) {
               data={bridgePivot as unknown as object[]}
               xKey="block_date"
               bars={[
-                { key: 'inbound', label: 'Inbound', color: '#00C1DE' },
-                { key: 'outbound', label: 'Outbound', color: '#9B5DE5' },
+                { key: 'inbound', label: 'Inbound', color: '#00EC97' },
+                { key: 'outbound', label: 'Outbound', color: '#6B5CE7' },
               ]}
               stacked
             />
           )}
         </Card>
 
-        <Card title="Top Bridged Tokens" syncedAt={details.syncedAt} onRefresh={details.refresh}>
+        <Card title="Top Bridged Tokens" syncedAt={details.syncedAt} onRefresh={details.refresh} isRefreshing={details.isRefreshing}>
           {details.state === 'loading' && <ChartSkeleton />}
           {details.state === 'error' && <ErrorBox message={details.error!} />}
           {details.state === 'success' && (
@@ -85,7 +85,7 @@ export function BridgeSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Bridge by Chain" syncedAt={details.syncedAt} onRefresh={details.refresh}>
+        <Card title="Bridge by Chain" syncedAt={details.syncedAt} onRefresh={details.refresh} isRefreshing={details.isRefreshing}>
           {details.state === 'loading' && <ChartSkeleton />}
           {details.state === 'error' && <ErrorBox message={details.error!} />}
           {details.state === 'success' && (

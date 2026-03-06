@@ -41,7 +41,7 @@ export function IntentsSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily Intent Transactions & Users" syncedAt={daily.syncedAt} onRefresh={daily.refresh}>
+        <Card title="Daily Intent Transactions & Users" syncedAt={daily.syncedAt} onRefresh={daily.refresh} isRefreshing={daily.isRefreshing}>
           {daily.state === 'loading' && <ChartSkeleton />}
           {daily.state === 'error' && <ErrorBox message={daily.error!} />}
           {daily.state === 'success' && (
@@ -56,7 +56,7 @@ export function IntentsSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Intent Event Types (Mint / Burn / Transfer)" syncedAt={daily.syncedAt} onRefresh={daily.refresh}>
+        <Card title="Intent Event Types (Mint / Burn / Transfer)" syncedAt={daily.syncedAt} onRefresh={daily.refresh} isRefreshing={daily.isRefreshing}>
           {daily.state === 'loading' && <ChartSkeleton />}
           {daily.state === 'error' && <ErrorBox message={daily.error!} />}
           {daily.state === 'success' && (
@@ -72,7 +72,7 @@ export function IntentsSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top Tokens via Intents" syncedAt={tokensRefs.syncedAt} onRefresh={tokensRefs.refresh}>
+        <Card title="Top Tokens via Intents" syncedAt={tokensRefs.syncedAt} onRefresh={tokensRefs.refresh} isRefreshing={tokensRefs.isRefreshing}>
           {tokensRefs.state === 'loading' && <ChartSkeleton />}
           {tokensRefs.state === 'error' && <ErrorBox message={tokensRefs.error!} />}
           {tokensRefs.state === 'success' && (
@@ -89,7 +89,7 @@ export function IntentsSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top Referrer dApps (Intent Routers)" syncedAt={tokensRefs.syncedAt} onRefresh={tokensRefs.refresh}>
+        <Card title="Top Referrer dApps (Intent Routers)" syncedAt={tokensRefs.syncedAt} onRefresh={tokensRefs.refresh} isRefreshing={tokensRefs.isRefreshing}>
           {tokensRefs.state === 'loading' && <ChartSkeleton />}
           {tokensRefs.state === 'error' && <ErrorBox message={tokensRefs.error!} />}
           {tokensRefs.state === 'success' && (

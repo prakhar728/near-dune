@@ -42,7 +42,7 @@ export function StakingSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Staked vs Liquid NEAR Over Time" syncedAt={staking.syncedAt} onRefresh={staking.refresh}>
+        <Card title="Staked vs Liquid NEAR Over Time" syncedAt={staking.syncedAt} onRefresh={staking.refresh} isRefreshing={staking.isRefreshing}>
           {staking.state === 'loading' && <ChartSkeleton />}
           {staking.state === 'error' && <ErrorBox message={staking.error!} />}
           {staking.state === 'success' && (
@@ -59,7 +59,7 @@ export function StakingSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top Validators by Chunks Produced" syncedAt={validators.syncedAt} onRefresh={validators.refresh}>
+        <Card title="Top Validators by Chunks Produced" syncedAt={validators.syncedAt} onRefresh={validators.refresh} isRefreshing={validators.isRefreshing}>
           {validators.state === 'loading' && <ChartSkeleton />}
           {validators.state === 'error' && <ErrorBox message={validators.error!} />}
           {validators.state === 'success' && (

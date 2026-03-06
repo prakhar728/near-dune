@@ -29,13 +29,18 @@ export async function GET(
     if (!force) {
       const cached = await getCached(id, timePeriod)
       if (cached) {
-        return NextResponse.json({ rows: cached.rows, syncedAt: cached.syncedAt, fromCache: true })
+        return NextResponse.json({
+          rows: cached.rows,
+          syncedAt: cached.syncedAt,
+          fromCache: true,
+          isStale: cached.isStale,
+        })
       }
     }
 
     const rows = await fetchDuneQuery(id, timePeriod)
     const syncedAt = await setCached(id, timePeriod, rows)
-    return NextResponse.json({ rows, syncedAt, fromCache: false })
+    return NextResponse.json({ rows, syncedAt, fromCache: false, isStale: false })
   } catch (err) {
     console.error(`Dune query ${id} failed:`, err)
     return NextResponse.json({ error: 'Failed to fetch data', rows: [] }, { status: 500 })

@@ -39,12 +39,14 @@ export function Card({
   className = '',
   syncedAt,
   onRefresh,
+  isRefreshing = false,
 }: {
   title?: string
   children: React.ReactNode
   className?: string
   syncedAt?: string | null
   onRefresh?: () => void
+  isRefreshing?: boolean
 }) {
   const timeLabel = useRelativeTime(syncedAt)
 
@@ -60,13 +62,17 @@ export function Card({
       {children}
       {timeLabel && onRefresh && (
         <div className="mt-2 flex items-center gap-1.5 justify-end">
+          {isRefreshing && (
+            <span className="text-[0.625rem] text-[var(--text-muted)] opacity-70">refreshing…</span>
+          )}
           <span className="text-[0.625rem] text-[var(--text-muted)]">synced {timeLabel}</span>
           <button
             onClick={onRefresh}
             title="Refresh"
-            className="text-[var(--text-muted)] hover:text-white transition-colors"
+            disabled={isRefreshing}
+            className="text-[var(--text-muted)] hover:text-white transition-colors disabled:opacity-40"
           >
-            <RefreshCw size={10} />
+            <RefreshCw size={10} className={isRefreshing ? 'animate-spin' : ''} />
           </button>
         </div>
       )}

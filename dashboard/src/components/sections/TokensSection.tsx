@@ -37,7 +37,7 @@ export function TokensSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily FT Transfer Events" syncedAt={daily.syncedAt} onRefresh={daily.refresh}>
+        <Card title="Daily FT Transfer Events" syncedAt={daily.syncedAt} onRefresh={daily.refresh} isRefreshing={daily.isRefreshing}>
           {daily.state === 'loading' && <ChartSkeleton />}
           {daily.state === 'error' && <ErrorBox message={daily.error!} />}
           {daily.state === 'success' && (
@@ -52,7 +52,7 @@ export function TokensSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Daily Mint vs Transfer vs Burn" syncedAt={daily.syncedAt} onRefresh={daily.refresh}>
+        <Card title="Daily Mint vs Transfer vs Burn" syncedAt={daily.syncedAt} onRefresh={daily.refresh} isRefreshing={daily.isRefreshing}>
           {daily.state === 'loading' && <ChartSkeleton />}
           {daily.state === 'error' && <ErrorBox message={daily.error!} />}
           {daily.state === 'success' && (
@@ -68,7 +68,7 @@ export function TokensSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top Tokens by Transfer Activity" className="md:col-span-2" syncedAt={top.syncedAt} onRefresh={top.refresh}>
+        <Card title="Top Tokens by Transfer Activity" className="md:col-span-2" syncedAt={top.syncedAt} onRefresh={top.refresh} isRefreshing={top.isRefreshing}>
           {top.state === 'loading' && <ChartSkeleton />}
           {top.state === 'error' && <ErrorBox message={top.error!} />}
           {top.state === 'success' && (

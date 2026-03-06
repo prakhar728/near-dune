@@ -38,7 +38,7 @@ export function StorageSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Storage Distribution by Account (Current)" syncedAt={dist.syncedAt} onRefresh={dist.refresh}>
+        <Card title="Storage Distribution by Account (Current)" syncedAt={dist.syncedAt} onRefresh={dist.refresh} isRefreshing={dist.isRefreshing}>
           {dist.state === 'loading' && <ChartSkeleton />}
           {dist.state === 'error' && <ErrorBox message={dist.error!} />}
           {dist.state === 'success' && (
@@ -52,7 +52,7 @@ export function StorageSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top Storage Consumers" syncedAt={top.syncedAt} onRefresh={top.refresh}>
+        <Card title="Top Storage Consumers" syncedAt={top.syncedAt} onRefresh={top.refresh} isRefreshing={top.isRefreshing}>
           {top.state === 'loading' && <ChartSkeleton />}
           {top.state === 'error' && <ErrorBox message={top.error!} />}
           {top.state === 'success' && (

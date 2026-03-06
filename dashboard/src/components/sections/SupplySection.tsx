@@ -38,7 +38,7 @@ export function SupplySection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Circulating vs Total Supply" syncedAt={supply.syncedAt} onRefresh={supply.refresh}>
+        <Card title="Circulating vs Total Supply" syncedAt={supply.syncedAt} onRefresh={supply.refresh} isRefreshing={supply.isRefreshing}>
           {supply.state === 'loading' && <ChartSkeleton />}
           {supply.state === 'error' && <ErrorBox message={supply.error!} />}
           {supply.state === 'success' && (
@@ -54,7 +54,7 @@ export function SupplySection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Circulating % of Total Supply" syncedAt={supply.syncedAt} onRefresh={supply.refresh}>
+        <Card title="Circulating % of Total Supply" syncedAt={supply.syncedAt} onRefresh={supply.refresh} isRefreshing={supply.isRefreshing}>
           {supply.state === 'loading' && <ChartSkeleton />}
           {supply.state === 'error' && <ErrorBox message={supply.error!} />}
           {supply.state === 'success' && (

@@ -37,7 +37,7 @@ export function DAppsSection({ timePeriod }: { timePeriod: string }) {
       </motion.div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card title="Daily Contract Deployments" syncedAt={deployments.syncedAt} onRefresh={deployments.refresh}>
+        <Card title="Daily Contract Deployments" syncedAt={deployments.syncedAt} onRefresh={deployments.refresh} isRefreshing={deployments.isRefreshing}>
           {deployments.state === 'loading' && <ChartSkeleton />}
           {deployments.state === 'error' && <ErrorBox message={deployments.error!} />}
           {deployments.state === 'success' && (
@@ -52,7 +52,7 @@ export function DAppsSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="CEX Activity on NEAR" syncedAt={cex.syncedAt} onRefresh={cex.refresh}>
+        <Card title="CEX Activity on NEAR" syncedAt={cex.syncedAt} onRefresh={cex.refresh} isRefreshing={cex.isRefreshing}>
           {cex.state === 'loading' && <ChartSkeleton />}
           {cex.state === 'error' && <ErrorBox message={cex.error!} />}
           {cex.state === 'success' && (
@@ -68,7 +68,7 @@ export function DAppsSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top dApps by Transaction Count" className="md:col-span-2" syncedAt={topDapps.syncedAt} onRefresh={topDapps.refresh}>
+        <Card title="Top dApps by Transaction Count" className="md:col-span-2" syncedAt={topDapps.syncedAt} onRefresh={topDapps.refresh} isRefreshing={topDapps.isRefreshing}>
           {topDapps.state === 'loading' && <ChartSkeleton />}
           {topDapps.state === 'error' && <ErrorBox message={topDapps.error!} />}
           {topDapps.state === 'success' && (
@@ -86,7 +86,7 @@ export function DAppsSection({ timePeriod }: { timePeriod: string }) {
           )}
         </Card>
 
-        <Card title="Top Method Names Called" className="md:col-span-2" syncedAt={methods.syncedAt} onRefresh={methods.refresh}>
+        <Card title="Top Method Names Called" className="md:col-span-2" syncedAt={methods.syncedAt} onRefresh={methods.refresh} isRefreshing={methods.isRefreshing}>
           {methods.state === 'loading' && <ChartSkeleton />}
           {methods.state === 'error' && <ErrorBox message={methods.error!} />}
           {methods.state === 'success' && (

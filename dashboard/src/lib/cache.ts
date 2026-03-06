@@ -12,6 +12,7 @@ const TTL_MINUTES: Record<string, number> = {
 export interface CachedResult {
   rows: DuneRow[]
   syncedAt: string
+  isStale: boolean
 }
 
 export async function getCached(queryId: number, timePeriod: string): Promise<CachedResult | null> {
@@ -24,7 +25,6 @@ export async function getCached(queryId: number, timePeriod: string): Promise<Ca
       .select('rows, synced_at')
       .eq('query_id', queryId)
       .eq('time_period', timePeriod)
-      .gte('synced_at', cutoff)
       .maybeSingle()
 
     if (error) {
@@ -33,7 +33,8 @@ export async function getCached(queryId: number, timePeriod: string): Promise<Ca
     }
     if (!data) return null
 
-    return { rows: data.rows as DuneRow[], syncedAt: data.synced_at }
+    const isStale = data.synced_at < cutoff
+    return { rows: data.rows as DuneRow[], syncedAt: data.synced_at, isStale }
   } catch (err) {
     console.error('[cache] getCached threw:', err)
     return null
